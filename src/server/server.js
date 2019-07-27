@@ -211,7 +211,7 @@ app.get('/getInfo/temp', function(e) {
             let json =
             {
                 code:200,
-                temperature: stdout.substr(6)
+                temperature: stdout.substr(5)
             }
             e.res.send(json);
         }
@@ -360,48 +360,47 @@ app.get('/service/:action/:serviceName', function(req, res)
     var serviceName = req.params.serviceName;
     var serviceAction = req.params.action;
 
-    if(serviceName === undefined || serviceAction === undefined)
-    {
-        res.send(
-        {
-            code:500,
-            msg: ":action ou :serviceName n'est pas définit"
-        });
-    }
-    var commandService = "sudo service ";
+    var commandService = "";
 
     switch(serviceAction)
     {
         case "start":
         case "stop":
         case "restart":
-            commandService += serviceName + " "+serviceAction;
+            commandService = "sudo service "+serviceName + " "+serviceAction;
             break;
         default:
-            throw Error("L'action : "+serviceAction + " doit être implémenté.");
-
-    }
-
-    exec(commandService, (err, stderr) => {
-        if(err)
-        {
             res.send(
             {
                 code:500,
-                msg: stderr
+                msg:"L'action : "+serviceAction + " n'est pas pris en charge par l'application."
             });
-        }
 
-        res.send(
-        {
-            code:200,
-            data:
+    }
+    if(commandService !== "")
+    {
+        exec(commandService, (err, stderr) => {
+            if(err)
             {
-                "serviceName": serviceName,
-                "serviceAction": serviceAction
+                res.send(
+                {
+                    code:500,
+                    msg: stderr
+                });
             }
+
+            res.send(
+            {
+                code:200,
+                data:
+                {
+                    "serviceName": serviceName,
+                    "serviceAction": serviceAction
+                }
+            });
         });
-    });
+    }
+
 });
 
 
