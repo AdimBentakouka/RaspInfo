@@ -285,6 +285,7 @@ app.get('/reboot', function(e) {
  *  @apiSampleRequest /service
  */
 app.get('/service', function (e) {
+    //Tous les services
     exec("service --status-all", (err, stdout, stderr) => {
         if(err)
         {
@@ -298,7 +299,6 @@ app.get('/service', function (e) {
         {
             let data = stdout.split(/[\r\n|\n]/);
             let response = {};
-
             data.forEach(function(element, index)
             {
                 let item = element.split(' ');
@@ -308,19 +308,41 @@ app.get('/service', function (e) {
                 {
                     etat = true;
                 }
-
                 response[index] =
                 {
                     etat: etat,
                     serviceName: item[5]
                 };
+            });
 
+            // Vérifie cas spécial pour PlexMediaServer
+            exec("sudo service plexmediaserver status",(err,stdout,stderr) =>
+            {
+                // Soit le service existe pas ou le service n'est pas démarré
+                if(err)
+                {
+                    //service désactivé
+
+                    if(!stderr.includes("Unit plexmediaserver.service could not be found."))
+                    {
+                        response[Object.keys(response).length] = {"etat": false, "serviceName": "plexmediaserver"};
+                    }
+
+
+                }
+                else
+                {
+                    response[Object.keys(response).length] = {"etat": true, "serviceName": "plexmediaserver"};
+                }
+                e.res.send(response);
 
             });
-            e.res.send(response);
+
+
         }
 
     });
+
 })
 
 /**
@@ -344,7 +366,7 @@ app.get('/service', function (e) {
            "serviceAction": serviceAction
        }
  *
- * @apiError {int} code Code de retour.
+ * @apiError {int} code Code de retour, [500] => Action introuvable, [501] => Nom de service introuvable.
  * @apiError {String} msg Message d'erreur de retour.
  *
  * @apiErrorExample Error-Response:
@@ -379,25 +401,27 @@ app.get('/service/:action/:serviceName', function(req, res)
     }
     if(commandService !== "")
     {
-        exec(commandService, (err, stderr) => {
+        exec(commandService, (err, stderr, stdout) => {
             if(err)
             {
                 res.send(
                 {
-                    code:500,
-                    msg: stderr
+                    code:501,
+                    msg: stdout
                 });
             }
-
-            res.send(
+            else
             {
-                code:200,
-                data:
+                res.send(
                 {
-                    "serviceName": serviceName,
-                    "serviceAction": serviceAction
-                }
-            });
+                    code:200,
+                    data:
+                    {
+                        "serviceName": serviceName,
+                        "serviceAction": serviceAction
+                    }
+                });
+            }
         });
     }
 

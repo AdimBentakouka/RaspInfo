@@ -350,7 +350,7 @@
             "type": "int",
             "optional": false,
             "field": "code",
-            "description": "<p>Code de retour.</p>"
+            "description": "<p>Code de retour, [500] =&gt; Action introuvable, [501] =&gt; Nom de service introuvable.</p>"
           },
           {
             "group": "Error 4xx",
