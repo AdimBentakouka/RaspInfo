@@ -1,0 +1,28 @@
+{
+  "name": "raspinfo",
+  "version": "1.0.0",
+  "description": "RaspInfo Affiche toutes les informations de votre Raspberry sur une page Web.",
+  "main": "src/server/server.js",
+  "scripts": {
+    "doc": "apidoc -i src/server/ -o apidoc/",
+    "server": "nodemon /src/server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdimBentakouka/RaspInfo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AdimBentakouka/RaspInfo/issues"
+  },
+  "homepage": "https://github.com/AdimBentakouka/RaspInfo#readme",
+  "dependencies": {
+    "@types/express": "^4.17.0",
+    "apidoc": "^0.17.7",
+    "exec": "^0.2.1",
+    "express": "^4.17.1",
+    "nodemon": "^1.19.1"
+  }
+}

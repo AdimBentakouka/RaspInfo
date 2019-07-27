@@ -1,0 +1,423 @@
+define({ "api": [
+  {
+    "type": "get",
+    "url": "/getInfo/hdd",
+    "title": "Affiches l'espace de stockages des HDDs",
+    "version": "1.0.0",
+    "name": "HDD",
+    "group": "GetInfo",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "int",
+            "optional": false,
+            "field": "code",
+            "description": "<p>Code de retour.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "array[]",
+            "optional": false,
+            "field": "data[]",
+            "description": "<p>Contient le détail de tous les HDD.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": " {\n    \"code\": 200,\n    \"data\": [\n        {\n            \"Filesystem\": \"udev\",\n            \"Size\": \"972M\",\n            \"Used\": \"0\",\n            \"Avail\": \"972M\",\n            \"Usepercent\": \"0%\",\n            \"MountedOn\": \"/dev\"\n        },\n        ...\n    ]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "int",
+            "optional": false,
+            "field": "code",
+            "description": "<p>Code de retour.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "type": "String",
+            "optional": false,
+            "field": "msg",
+            "description": "<p>Message d'erreur de retour.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": " {\n    \"code\": 500,\n    \"msg\": \"'df' n'est pas reconnu en tant que commande interne\\r\\nou externe, un programme exécutable ou un fichier de commandes.\\r\\n\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "sampleRequest": [
+      {
+        "url": "/getInfo/hdd"
+      }
+    ],
+    "filename": "src/server/server.js",
+    "groupTitle": "GetInfo"
+  },
+  {
+    "type": "get",
+    "url": "/getInfo/memoire",
+    "title": "Affiche les informations de la RAM",
+    "version": "1.0.0",
+    "name": "Memoire",
+    "group": "GetInfo",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "int",
+            "optional": false,
+            "field": "code",
+            "description": "<p>Code de retour.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "array[]",
+            "optional": false,
+            "field": "data[]",
+            "description": "<p>Contient le détail de tous les HDD.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n     \"code\":200,\n        \"data\":\n        [\n            {\n                \"total\":\"1,9G\",\n                \"used\":\"181M\",\n                \"free\":\"1,5G\",\n                \"shared\":\"6,1M\",\n                \"buff/cache\":\"241M\",\n                \"available\":\"1,6G\"\n            }\n            ...\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "int",
+            "optional": false,
+            "field": "code",
+            "description": "<p>Code de retour.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "type": "String",
+            "optional": false,
+            "field": "msg",
+            "description": "<p>Message d'erreur de retour.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n     \"code\": 500,\n        \"msg\": \"'free' n'est pas reconnu en tant que commande interne\\r\\nou externe, un programme exécutable ou un fichier de commandes.\\r\\n\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "sampleRequest": [
+      {
+        "url": "/getInfo/memoire"
+      }
+    ],
+    "filename": "src/server/server.js",
+    "groupTitle": "GetInfo"
+  },
+  {
+    "type": "get",
+    "url": "/getInfo/temp",
+    "title": "Affiches la température",
+    "version": "1.0.0",
+    "name": "Temp",
+    "group": "GetInfo",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "int",
+            "optional": false,
+            "field": "code",
+            "description": "<p>Code de retour.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "data",
+            "description": "<p>Contient la température</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n     \"code\":200,\n        \"data\": \"XX °C\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "int",
+            "optional": false,
+            "field": "code",
+            "description": "<p>Code de retour.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "type": "String",
+            "optional": false,
+            "field": "msg",
+            "description": "<p>Message d'erreur de retour.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "{\n    \"code\": 500,\n    \"msg\": \"/bin/sh: 1: /opt/vc/bin/vcgencmd: not found\\n\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "sampleRequest": [
+      {
+        "url": "/getInfo/temp"
+      }
+    ],
+    "filename": "src/server/server.js",
+    "groupTitle": "GetInfo"
+  },
+  {
+    "type": "get",
+    "url": "/service",
+    "title": "Afficher l'état de tout les services",
+    "version": "1.0.0",
+    "name": "Service",
+    "group": "Service",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "int",
+            "optional": false,
+            "field": "code",
+            "description": "<p>Code de retour.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "array[]",
+            "optional": false,
+            "field": "data[]",
+            "description": "<p>Contient le détail de tous les services</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n        \"0\": {\n            \"etat\": true,\n            \"serviceName\": \"alsa-utils\"\n        },\n        \"1\": {\n            \"etat\": true,\n            \"serviceName\": \"avahi-daemon\"\n        },\n        \"2\": {\n            \"etat\": true,\n            \"serviceName\": \"binfmt-support\"\n        },\n        \"3\": {\n            \"etat\": false,\n            \"serviceName\": \"bluetooth\"\n        }\n        ...\n    }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "int",
+            "optional": false,
+            "field": "code",
+            "description": "<p>Code de retour.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "type": "String",
+            "optional": false,
+            "field": "msg",
+            "description": "<p>Message d'erreur de retour.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": " {\n\"code\": 500,\n\"msg\": \"'service' n'est pas reconnu en tant que commande interne\\r\\nou externe, un programme ex�cutable ou un fichier de commandes.\\r\\n\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "sampleRequest": [
+      {
+        "url": "/service"
+      }
+    ],
+    "filename": "src/server/server.js",
+    "groupTitle": "Service"
+  },
+  {
+    "type": "get",
+    "url": "/service/:action/:serviceName",
+    "title": "Permet de définir l'état d'un service",
+    "name": "setService",
+    "group": "Service",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "action",
+            "description": "<p>Le paramètre doit être égal à [&quot;start&quot;,&quot;stop&quot;,&quot;restart&quot;].</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "serviceName",
+            "description": "<p>Le nom du service.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "int",
+            "optional": false,
+            "field": "Code",
+            "description": "<p>de retour.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Array[]",
+            "optional": false,
+            "field": "data",
+            "description": "<p>Contient la réponse.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "data.serviceName",
+            "description": "<p>Le service concernée</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "data.serviceAction",
+            "description": "<p>Action demandée.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "code:200,\n   data:\n   {\n       \"serviceName\": serviceName,\n       \"serviceAction\": serviceAction\n   }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "int",
+            "optional": false,
+            "field": "code",
+            "description": "<p>Code de retour.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "type": "String",
+            "optional": false,
+            "field": "msg",
+            "description": "<p>Message d'erreur de retour.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n  \"code\":500,\n     \"msg\": \":action ou :serviceName n'est pas définit\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "sampleRequest": [
+      {
+        "url": "/service/:action/:serviceName"
+      }
+    ],
+    "version": "0.0.0",
+    "filename": "src/server/server.js",
+    "groupTitle": "Service"
+  },
+  {
+    "type": "get",
+    "url": "/reboot",
+    "title": "Restart Raspberry après 5s",
+    "version": "1.0.0",
+    "name": "reboot",
+    "group": "System",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "int",
+            "optional": false,
+            "field": "code",
+            "description": "<p>Code de retour.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "data",
+            "description": "<p>Contient la réponse</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n     \"code\":200,\n        \"data\": \"Commande Envoyé\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "sampleRequest": [
+      {
+        "url": "/reboot"
+      }
+    ],
+    "filename": "src/server/server.js",
+    "groupTitle": "System"
+  }
+] });

@@ -1,0 +1,5 @@
+{
+    "name": "raspinfo",
+    "version": "1.0.0",
+    "description": "RaspInfo Affiche toutes les informations de votre Raspberry sur une page Web."
+}
