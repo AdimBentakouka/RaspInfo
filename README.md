@@ -6,7 +6,7 @@ RaspInfo Affiche toutes les informations de votre Raspberry sur une page Web.
 
 RaspInfo est une application Web écrit en NodeJS, elle permet de voir toutes les informations importante(Température du système ...) et de contrôler votre Raspberry (Redemarrer, stopper/démarrer un service, mettre à jour un service)
 
-### Commande importante
+### Commandes importantes
 
 * ````NPM INSTALL```` : Pour installer toutes les dépendences nécessaires à l'application
 
