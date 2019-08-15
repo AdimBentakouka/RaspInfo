@@ -23,5 +23,5 @@ app.get('/', function(e){
 .use('/service',service)
 
 .listen(config.port, function () {
- console.log('Api RemoteBerry start on http://localhost'+config.port);
+ console.log('Api RemoteBerry start on http://localhost:'+config.port);
 });

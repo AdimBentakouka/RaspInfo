@@ -1,8 +1,77 @@
 [
   {
     "type": "get",
+    "url": "/getInfo/HDD",
+    "title": "Afficher info HDDs",
+    "version": "1.0.0",
+    "name": "HDD",
+    "group": "GetInfo",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "int",
+            "optional": false,
+            "field": "code",
+            "description": "<p>Code de retour.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "array[]",
+            "optional": false,
+            "field": "data[]",
+            "description": "<p>Contient le détail de tous les HDD.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": " HTTP/1.1 200 OK\n{\n         \"code\": 200,\n         \"data\": [\n             {\n                 \"Filesystem\": \"udev\",\n                 \"Size\": \"972M\",\n                 \"Used\": \"0\",\n                 \"Avail\": \"972M\",\n                 \"Usepercent\": \"0%\",\n                 \"MountedOn\": \"/dev\"\n             },\n             ...\n }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "int",
+            "optional": false,
+            "field": "code",
+            "description": "<p>Code de retour.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "type": "String",
+            "optional": false,
+            "field": "msg",
+            "description": "<p>Message d'erreur de retour.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n     \"code\": 500,\n            \"msg\": \"'free' n'est pas reconnu en tant que commande interne\\r\\nou externe, un programme exécutable ou un fichier de commandes.\\r\\n\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "sampleRequest": [
+      {
+        "url": "/getInfo/HDD"
+      }
+    ],
+    "filename": "src/server/utils/info.js",
+    "groupTitle": "GetInfo"
+  },
+  {
+    "type": "get",
     "url": "/getInfo/memoire",
-    "title": "Affiche les informations de la RAM",
+    "title": "Affiche info RAM",
     "version": "1.0.0",
     "name": "Memoire",
     "group": "GetInfo",
@@ -21,7 +90,7 @@
             "type": "array[]",
             "optional": false,
             "field": "data[]",
-            "description": "<p>Contient le détail de tous les HDD.</p>"
+            "description": "<p>Contient le détail de tous la RAM.</p>"
           }
         ]
       },
@@ -71,7 +140,7 @@
   {
     "type": "get",
     "url": "/getInfo/temp",
-    "title": "Affiches la température",
+    "title": "Afficher température",
     "version": "1.0.0",
     "name": "Temp",
     "group": "GetInfo",
