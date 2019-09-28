@@ -55,7 +55,7 @@
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n     \"code\": 500,\n            \"msg\": \"'free' n'est pas reconnu en tant que commande interne\\r\\nou externe, un programme exécutable ou un fichier de commandes.\\r\\n\"\n}",
+          "content": "HTTP/1.1 404 Not Found\n{\n     \"code\": 500,\n            \"msg\": \"'df -h' n'est pas reconnu en tant que commande interne\\r\\nou externe, un programme exécutable ou un fichier de commandes.\\r\\n\"\n}",
           "type": "json"
         }
       ]

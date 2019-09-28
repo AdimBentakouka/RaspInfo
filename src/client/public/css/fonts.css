@@ -1,0 +1,9 @@
+@font-face {
+	font-family: "Ananda";
+	src: url('../fonts/LemonMilklight.otf');
+}
+
+.main
+{
+		margin: 20px 0px;
+}
