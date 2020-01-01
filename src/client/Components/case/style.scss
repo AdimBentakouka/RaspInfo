@@ -1,0 +1,31 @@
+$White: #FFF;
+
+.Case
+{
+  margin-top: 40px;
+  height: 200px;
+
+  color: $White;
+
+  border-radius: 10px;
+
+  -webkit-box-shadow: 10px 6px 13px -8px rgba(0,0,0,0.38);
+  -moz-box-shadow: 10px 6px 13px -8px rgba(0,0,0,0.38);
+  box-shadow: 10px 6px 13px -8px rgba(0,0,0,0.38);
+
+}
+
+.Case h1
+{
+  margin: 0;
+  text-align: center;
+  font-size: 40px;
+
+}
+
+.Case p
+{
+  margin: 0;
+  text-align: center;
+  font-size: 60px;
+}

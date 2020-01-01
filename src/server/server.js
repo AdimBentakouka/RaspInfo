@@ -10,6 +10,21 @@ var app = express();
 
 app.use(express.json());
 
+app.use((_req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+
+    // authorized headers for preflight requests
+    // https://developer.mozilla.org/en-US/docs/Glossary/preflight_request
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+
+    app.options('*', (_req, res) => {
+        // allowed XHR methods
+        res.header('Access-Control-Allow-Methods', 'GET, PATCH, PUT, POST, DELETE, OPTIONS');
+        res.send();
+    });
+});
+
 //Rend le dossier apidoc consultable
 app.use(express.static('apidoc'));
 
@@ -23,5 +38,5 @@ app.get('/', function(e){
 .use('/service',service)
 
 .listen(config.port, function () {
- console.log('Api RemoteBerry start on http://localhost:'+config.port);
+ console.log('Api RaspInfo start on http://localhost:'+config.port);
 });

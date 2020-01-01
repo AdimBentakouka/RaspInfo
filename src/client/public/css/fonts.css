@@ -1,9 +1,16 @@
 @font-face {
-	font-family: "Ananda";
+	font-family: "LemonMilklight";
 	src: url('../fonts/LemonMilklight.otf');
 }
 
-.main
-{
-		margin: 20px 0px;
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/iconfont/MaterialIcons-Regular.eot); /* For IE6-8 */
+  src: local('Material Icons'),
+    local('MaterialIcons-Regular'),
+    url(../fonts/iconfont/MaterialIcons-Regular.woff2) format('woff2'),
+    url(../fonts/iconfont/MaterialIcons-Regular.woff) format('woff'),
+    url(../fonts/iconfont/MaterialIcons-Regular.ttf) format('truetype');
 }

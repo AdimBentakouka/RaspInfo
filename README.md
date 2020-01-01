@@ -10,9 +10,9 @@ RaspInfo est une application Web écrit en NodeJS, elle permet de voir toutes le
 
 * ````NPM INSTALL```` : Pour installer toutes les dépendences nécessaires à l'application
 
-* ````NPM RUN SERVER```` : Pour lancer le serveur écoute sur le port ``3002``
+* ````NPM RUN SERVER```` : Pour lancer le serveur écoute sur le port ``3001``
 
-* ````NPM RUN CLIENT```` : Pour lancer l'application WEB sur le port ```3001```
+* ````NPM RUN CLIENT```` : Pour lancer l'application WEB sur le port ```3000```
 
 * ````NPM RUN DOC```` : Pour générer la documentation de ```l'api ```
 

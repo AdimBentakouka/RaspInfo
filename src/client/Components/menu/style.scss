@@ -1,0 +1,15 @@
+$color-primary: #FFF;
+$color-secondary: #bc1142;
+
+.title
+{
+  margin-left: 50px;
+  margin-right: 50px;
+
+  color: $color-primary;
+  font-family: LemonMilklight;
+}
+.title span
+{
+  color: $color-secondary;
+}

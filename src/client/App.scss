@@ -1,0 +1,27 @@
+$bgClearTheme: #eceff1;
+$bgDarkTheme: #212121;
+
+.darkTheme
+{
+  color: #FFF;
+  background-color: $bgDarkTheme;
+}
+
+.darkTheme .modal-footer
+{
+
+  background-color: $bgDarkTheme;
+}
+.darkTheme .modal-close
+{
+  color: #FFF;
+}
+.clearTheme
+{
+  background-color: $bgClearTheme;
+}
+
+.no-select
+{
+  user-select: none;
+}
