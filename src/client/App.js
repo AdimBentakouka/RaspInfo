@@ -16,7 +16,8 @@ import './App.scss';
 
 class App extends Component {
 
-  componentWillMount()
+
+  intializeTheme()
   {
     let themeCookie = cookie.load('theme');
 
@@ -28,14 +29,29 @@ class App extends Component {
     {
       this.setState({theme: 'clearTheme'});
     }
+
   }
 
-  changeTheme(_theme)
+  // Permet de permuter entre le theme sombre et claire
+  changeTheme()
   {
+    let _theme = undefined;
+
+    if(this.state.theme === "darkTheme")
+    {
+      _theme = 'clearTheme';
+    }
+
+    else
+    {
+      _theme = 'darkTheme';
+    }
+
     this.setState({theme:_theme});
     cookie.save('theme', _theme, {path:'/'});
   }
-  //Pour body
+
+  // Pour changer les class selon le thème
   Theme()
   {
     if(this.state.theme === 'darkTheme')
@@ -48,16 +64,41 @@ class App extends Component {
     }
   }
 
+  // Return l'icon du thème
+  iconThemeRender()
+  {
+    let icon = '';
+    if(this.state.theme === "darkTheme")
+    {
+      icon = 'wb_sunny';
+    }
+    else
+    {
+      icon = 'brightness_2';
+    }
+
+    return icon;
+  }
+
+
+  componentWillMount()
+  {
+    // Intialisation du thèmes
+    this.intializeTheme();
+  }
+
+
   render() {
     this.Theme();
+
     return (
-      <div className={this.state.theme}>
-        <Menu theme={this.state.theme} fChangeTheme={this.changeTheme.bind(this)}/>
+      <div>
+        <Menu nightmode={this.state.theme === 'darkTheme' ? true : false } fIconTheme={this.iconThemeRender.bind(this)} fChangeTheme={this.changeTheme.bind(this)}/>
         <Switch>
           <Route path="/" exact render={() => <Dashboard theme={this.state.theme}/> } />
           <Route render={() => <Error numberError='404' description="Il semblerait que la page n'existe pas ..."/> } />
         </Switch>
-        <Fab theme={this.state.theme}/>
+        <Fab nightmode={this.state.theme === 'darkTheme' ? true : false } theme={this.state.theme}/>
       </div>
     );
   }

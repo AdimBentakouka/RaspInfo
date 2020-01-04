@@ -6,6 +6,9 @@ const axios = require('axios');
 const apiURL = "http://preprod.local:3001"; // "http://server.local:3001/";
 
 
+const darkTheme = 'blue-grey darken-4';
+const clearTheme = 'blue-grey lighten-2';
+
 class Fab extends Component {
 
   constructor()
@@ -20,21 +23,27 @@ class Fab extends Component {
 
     this.RenderModal = this.RenderModal.bind(this);
   }
-  themeRender(_color)
+  themeRender(_modenight)
   {
-    let color = _color;
+    let color;
 
-    if(this.props.theme === "darkTheme")
+    if(_modenight)
     {
-        color = _color+' darken-3';
+      color = darkTheme ;
+    }
+    else
+    {
+      color = clearTheme;
     }
 
     return color;
   }
+
   setStateButton(_etat)
   {
     this.setState({disabledButton: !_etat, modal:false});
   }
+
   onClickPowerOff()
   {
     // Appel méthode pour éteindre la RPI
@@ -81,6 +90,7 @@ class Fab extends Component {
 
     setTimeout(() => this.setStateButton(true), 15000);
   }
+
   errorRender(error)
   {
     if (error.response) {
@@ -103,6 +113,8 @@ class Fab extends Component {
        });
      }
   }
+
+
   RenderModal()
   {
     if(this.state.modal === true)
@@ -124,12 +136,11 @@ class Fab extends Component {
             icon = {<Icon>view_module</Icon>}
             floating
             fab={{direction: 'left', hoverEnabled: false}}
-            className={this.themeRender("blue-grey")+" no-select"}
-
+            className={this.themeRender(this.props.nightmode)+" no-select"}
             large
           >
-            <Button floating icon={<Icon>power_settings_new</Icon>} onClick={ this.onClickPowerOff.bind(this)} className={this.themeRender("red")} disabled = {this.state.disabledButton} />
-            <Button floating icon={<Icon>refresh</Icon>} onClick={ this.onClickRestart.bind(this) } className={this.themeRender("green")} disabled = {this.state.disabledButton} />
+            <Button floating icon={<Icon>power_settings_new</Icon>} onClick={ this.onClickPowerOff.bind(this)} className="red darken-3" disabled = {this.state.disabledButton} />
+            <Button floating icon={<Icon>refresh</Icon>} onClick={ this.onClickRestart.bind(this) } className="green darken-3" disabled = {this.state.disabledButton} />
           </Button>
           {this.RenderModal()}
         </div>

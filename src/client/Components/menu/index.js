@@ -6,60 +6,39 @@ import { Link } from 'react-router-dom';
 
 import "./style.scss";
 
+
+const darkTheme = 'blue-grey darken-4';
+const clearTheme = 'blue-grey lighten-2';
+
 class Menu extends Component {
 
 
-  themeRender(_color)
+  themeRender(_modenight)
   {
-    let color = _color;
+    let color;
 
-    if(this.props.theme === "darkTheme")
+    if(_modenight)
     {
-        color = 'blue-grey darken-4';
+      color = darkTheme ;
+    }
+    else
+    {
+      color = clearTheme;
     }
 
     return color;
   }
 
-  iconThemeRender()
-  {
-    let icon = '';
-    if(this.props.theme === "darkTheme")
-    {
-      icon = 'wb_sunny';
-    }
-    else
-    {
-      icon = 'brightness_2';
-    }
-
-    return icon;
-
-  }
-
-  onClickTheme()
-  {
-    let theme = '';
-    if(this.props.theme === "darkTheme")
-    {
-      theme = "clearTheme";
-    }
-    else
-    {
-      theme = "darkTheme";
-    }
-    this.props.fChangeTheme(theme)
-  }
 
   render() {
 
     return (
-      <Navbar className={this.themeRender("blue-grey")+" no-select"} brand={<div className="title">Rasp<span>Info</span></div>} alignLinks="right">
+      <Navbar className={this.themeRender(this.props.nightmode)+" no-select"} brand={<div className="title">Rasp<span>Info</span></div>} alignLinks="right">
         <Link to="/">DashBoard <Icon left>dashboard</Icon></Link>
         <Link to="/folder">FTP<Icon left>folder</Icon></Link>
         <Link to="/ssh">SSH<Icon left>desktop_windows</Icon></Link>
         <Link to="/config">Configuration<Icon left>build</Icon></Link>
-        <NavItem onClick={this.onClickTheme.bind(this)} ><Icon left>{this.iconThemeRender()}</Icon></NavItem>
+        <NavItem onClick={this.props.fChangeTheme.bind(this)} ><Icon left>{this.props.fIconTheme()}</Icon></NavItem>
       </Navbar>
 
     );
